@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 set -eEuo pipefail
 
+_shutdown() {
+  trap '' INT TERM
+  kill 0
+  wait
+
+  exit 0
+}
+
+trap _shutdown INT TERM
+
 _themo() {
   r=$1
   g=$2
